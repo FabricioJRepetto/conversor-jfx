@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.conversorfx.MainController">
    <children>
       <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
@@ -23,7 +22,7 @@
                         <Label layoutX="55.0" layoutY="61.0" prefHeight="17.0" prefWidth="100.0" text="Importe" />
                         <Label layoutX="255.0" layoutY="61.0" text="de" />
                         <Label layoutX="435.0" layoutY="61.0" prefHeight="17.0" prefWidth="33.0" text="a" />
-                        <TextField fx:id="divisa_input" layoutX="40.0" layoutY="87.0" onKeyTyped="#checkInput" />
+                        <TextField fx:id="divisa_input" layoutX="40.0" layoutY="87.0" onInputMethodTextChanged="#checkInput" />
                         <MenuButton fx:id="divisa_from" layoutX="240.0" layoutY="87.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" text="Selecciona divisa">
                           <items>
                             <MenuItem mnemonicParsing="false" onAction="#divisaFromMenu" text="ARS - Peso argentino" />
@@ -44,7 +43,7 @@
                               <MenuItem mnemonicParsing="false" onAction="#divisaToMenu" text="KRW - Won surcoreano" />
                           </items>
                         </MenuButton>
-                        <Button layoutX="384.0" layoutY="87.0" mnemonicParsing="false" text="🔁" />
+                        <Button layoutX="384.0" layoutY="87.0" mnemonicParsing="false" onAction="#swapCurrencies" text="🔁" />
                         <Label fx:id="divisa_summary_label" layoutX="40.0" layoutY="155.0" prefHeight="17.0" prefWidth="188.0" text="[RESUMEN]" />
                         <Label fx:id="divisa_result_label" layoutX="40.0" layoutY="175.0" prefHeight="40.0" prefWidth="515.0" text="[RESULTADO]">
                            <font>
@@ -58,6 +57,9 @@
                               <Font size="18.0" />
                            </font>
                         </Button>
+                        <Label fx:id="divisa_error_amount" layoutX="40.0" layoutY="122.0" prefHeight="17.0" prefWidth="191.0" textFill="#a40000" />
+                        <Label fx:id="divisa_error_from" layoutX="241.0" layoutY="122.0" prefHeight="17.0" prefWidth="136.0" textFill="#a40000" />
+                        <Label fx:id="divisa_error_to" layoutX="421.0" layoutY="122.0" prefHeight="17.0" prefWidth="135.0" textFill="#a40000" />
                      </children>
                   </Pane>
                </content>

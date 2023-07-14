@@ -29,12 +29,28 @@ public class MainController {
     @FXML
     private MenuButton divisa_to;
 
-    private String from;
-    private String to;
+    @FXML
+    private Label divisa_error_amount;
 
     @FXML
-    protected void checkInput(KeyEvent event) {
-        if (event.getCharacter().matches("\\D")) {
+    private Label divisa_error_from;
+
+    @FXML
+    private Label divisa_error_to;
+
+
+    private String from = null;
+    private String to = null;
+    private Double amount = null;
+
+
+    @FXML
+    protected void checkInput(InputMethodEvent event) {
+        String aux = event.getCommitted();
+        System.out.println(event.getComposed());
+        System.out.println(aux);
+
+        if (aux.matches("\\D")) {
             event.consume();
             divisa_input.setStyle("-fx-border-color: red");
         } else {
@@ -61,19 +77,68 @@ public class MainController {
     @FXML
     protected void convertButtonClick() {
         try {
-            Double amount = (double) Integer.parseInt(divisa_input.getText());
-            if (amount > 0) {
+            this.clearError();
+
+            String inputString = divisa_input.getText();
+
+            if (inputString.length() > 0) {
+                amount = (double) Integer.parseInt(inputString.replaceAll("\\D", ""));
+                divisa_input.setText(amount.toString());
+            }
+
+            if (checkNoErrors()) {
                 System.out.println(amount);
 
                 divisa_summary_label.setText("$" + divisa_input.getText() + " " + from + " =");
                 divisa_result_label.setText("$X.XXX.xx" + " " + to);
                 divisa_1.setText("1 " + from + " = X " + to);
                 divisa_2.setText("1 " + to + " = X " + from);
-
-            } else System.out.println("Ingrese un monto inicial");
+            }
 
         } catch(Exception ex) {
-            System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
+    }
+
+    public void swapCurrencies() {
+        if (from != null && to != null) {
+            String code_aux = from;
+            String text_aux = divisa_from.getText();
+
+            divisa_from.setText(divisa_to.getText());
+            divisa_to.setText(text_aux);
+
+            from = to;
+            to = code_aux;
+
+            System.out.println("from " + from + ", to " + to);
+        }
+    }
+
+    private void clearError() {
+        divisa_error_amount.setText("");
+        divisa_error_from.setText("");
+        divisa_error_to.setText("");
+    }
+
+    private boolean checkNoErrors() {
+        boolean flag = true;
+
+        if (from == null) {
+            divisa_error_from.setText("divisa necesaria");
+            flag = false;
+        }
+        if (to == null) {
+            divisa_error_to.setText("divisa necesaria");
+            flag = false;
+        }
+        if (amount == null) {
+            divisa_error_amount.setText("Ingrese un monto inicial");
+            flag = false;
+        } else if (amount <= 0) {
+            divisa_error_amount.setText("Monto debe ser mayor a 0");
+            flag = false;
+        }
+        return flag;
     }
 }
