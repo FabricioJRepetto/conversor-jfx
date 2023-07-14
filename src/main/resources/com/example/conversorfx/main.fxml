@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.conversorfx.MainController">
+   <children>
+      <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Divisas">
+               <content>
+                  <Pane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="55.0" layoutY="61.0" prefHeight="17.0" prefWidth="100.0" text="Importe" />
+                        <Label layoutX="255.0" layoutY="61.0" text="de" />
+                        <Label layoutX="435.0" layoutY="61.0" prefHeight="17.0" prefWidth="33.0" text="a" />
+                        <TextField fx:id="divisa_input" layoutX="40.0" layoutY="87.0" onKeyTyped="#checkInput" />
+                        <MenuButton fx:id="divisa_from" layoutX="240.0" layoutY="87.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" text="Selecciona divisa">
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#divisaFromMenu" text="ARS - Peso argentino" />
+                            <MenuItem mnemonicParsing="false" onAction="#divisaFromMenu" text="USD - Dólar" />
+                              <MenuItem mnemonicParsing="false" onAction="#divisaFromMenu" text="EUR - Euro" />
+                              <MenuItem mnemonicParsing="false" onAction="#divisaFromMenu" text="GBP - Libras Esterlinas" />
+                              <MenuItem mnemonicParsing="false" onAction="#divisaFromMenu" text="JPY - Yen Japonés" />
+                              <MenuItem mnemonicParsing="false" onAction="#divisaFromMenu" text="KRW - Won surcoreano" />
+                          </items>
+                        </MenuButton>
+                        <MenuButton fx:id="divisa_to" layoutX="420.0" layoutY="87.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" text="Selecciona divisa">
+                          <items>
+                              <MenuItem mnemonicParsing="false" onAction="#divisaToMenu" text="USD - Dólar" />
+                              <MenuItem mnemonicParsing="false" onAction="#divisaToMenu" text="ARS - Peso argentino" />
+                              <MenuItem mnemonicParsing="false" onAction="#divisaToMenu" text="EUR - Euro" />
+                              <MenuItem mnemonicParsing="false" onAction="#divisaToMenu" text="GBP - Libras Esterlinas" />
+                              <MenuItem mnemonicParsing="false" onAction="#divisaToMenu" text="JPY - Yen Japonés" />
+                              <MenuItem mnemonicParsing="false" onAction="#divisaToMenu" text="KRW - Won surcoreano" />
+                          </items>
+                        </MenuButton>
+                        <Button layoutX="384.0" layoutY="87.0" mnemonicParsing="false" text="🔁" />
+                        <Label fx:id="divisa_summary_label" layoutX="40.0" layoutY="155.0" prefHeight="17.0" prefWidth="188.0" text="[RESUMEN]" />
+                        <Label fx:id="divisa_result_label" layoutX="40.0" layoutY="175.0" prefHeight="40.0" prefWidth="515.0" text="[RESULTADO]">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="divisa_1" layoutX="40.0" layoutY="225.0" prefHeight="17.0" prefWidth="200.0" text="1 DIVISA_1 = X DIVISA_2" />
+                        <Label fx:id="divisa_2" layoutX="40.0" layoutY="250.0" prefHeight="17.0" prefWidth="200.0" text="1 DIVISA_2 = X DIVISA_1" />
+                        <Button fx:id="divisa_convert_btn" layoutX="405.0" layoutY="301.0" mnemonicParsing="false" onAction="#convertButtonClick" prefHeight="40.0" prefWidth="150.0" text="convertir">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+               </content>
+            </Tab>
+          <Tab text="Temperatura" />
+            <Tab text="Longitud" />
+            <Tab text="Masa" />
+            <Tab text="Bytes" />
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
