@@ -7,6 +7,7 @@ public class Divisa extends TipoUnidad {
 //    private final Map<String, Double> unidades = new HashMap<>();
 
     public Divisa() {
+        super();
         super.unidades.put("USD", 1.0);
         super.unidades.put("ARS", 0.0037); //TODO cambiar a 0.0019
         super.unidades.put("EUR", 1.1235);

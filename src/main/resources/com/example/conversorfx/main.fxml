@@ -5,8 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -14,74 +12,81 @@
 
 <AnchorPane prefHeight="353.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.conversorfx.MainController">
    <children>
-      <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab text="Divisas">
-               <content>
-                  <Pane prefHeight="320.0" prefWidth="663.0">
-                     <children>
-                        <Label layoutX="44.0" layoutY="61.0" prefHeight="17.0" prefWidth="100.0" text="Importe" textFill="#2e3c57" />
-                        <Label layoutX="244.0" layoutY="61.0" text="de" textFill="#2e3c57" />
-                        <Label layoutX="424.0" layoutY="61.0" prefHeight="17.0" prefWidth="33.0" text="a" textFill="#2e3c57" />
-                        <TextField fx:id="divisa_input" layoutX="40.0" layoutY="87.0" />
-                        <MenuButton fx:id="divisa_from" layoutX="240.0" layoutY="87.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" text="Selecciona divisa">
-                          <items>
-                            <MenuItem mnemonicParsing="false" onAction="#divisaFromMenu" text="ARS - Peso argentino" />
-                            <MenuItem mnemonicParsing="false" onAction="#divisaFromMenu" text="USD - Dólar" />
-                              <MenuItem mnemonicParsing="false" onAction="#divisaFromMenu" text="EUR - Euro" />
-                              <MenuItem mnemonicParsing="false" onAction="#divisaFromMenu" text="GBP - Libras Esterlinas" />
-                              <MenuItem mnemonicParsing="false" onAction="#divisaFromMenu" text="JPY - Yen Japonés" />
-                              <MenuItem mnemonicParsing="false" onAction="#divisaFromMenu" text="KRW - Won surcoreano" />
-                          </items>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </MenuButton>
-                        <MenuButton fx:id="divisa_to" layoutX="420.0" layoutY="87.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" text="Selecciona divisa">
-                          <items>
-                              <MenuItem mnemonicParsing="false" onAction="#divisaToMenu" text="USD - Dólar" />
-                              <MenuItem mnemonicParsing="false" onAction="#divisaToMenu" text="ARS - Peso argentino" />
-                              <MenuItem mnemonicParsing="false" onAction="#divisaToMenu" text="EUR - Euro" />
-                              <MenuItem mnemonicParsing="false" onAction="#divisaToMenu" text="GBP - Libras Esterlinas" />
-                              <MenuItem mnemonicParsing="false" onAction="#divisaToMenu" text="JPY - Yen Japonés" />
-                              <MenuItem mnemonicParsing="false" onAction="#divisaToMenu" text="KRW - Won surcoreano" />
-                          </items>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </MenuButton>
-                        <Button layoutX="384.0" layoutY="87.0" mnemonicParsing="false" onAction="#swapCurrencies" text="🔁">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></Button>
-                        <Label fx:id="divisa_summary_label" layoutX="40.0" layoutY="152.0" prefHeight="17.0" prefWidth="188.0" textFill="#2e3c57" />
-                        <Label fx:id="divisa_result_label" layoutX="40.0" layoutY="172.0" prefHeight="40.0" prefWidth="515.0" textFill="#2e3c57">
-                           <font>
-                              <Font name="System Bold" size="32.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="divisa_1" layoutX="40.0" layoutY="222.0" prefHeight="17.0" prefWidth="200.0" textFill="#2e3c57" />
-                        <Label fx:id="divisa_2" layoutX="40.0" layoutY="247.0" prefHeight="17.0" prefWidth="200.0" textFill="#2e3c57" />
-                        <Button fx:id="divisa_convert_btn" layoutX="405.0" layoutY="289.0" mnemonicParsing="false" onAction="#convertButtonClick" prefHeight="40.0" prefWidth="150.0" text="convertir" textAlignment="CENTER" textFill="#2e3c57">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                        <Label fx:id="divisa_error_amount" layoutX="40.0" layoutY="122.0" prefHeight="17.0" prefWidth="191.0" textFill="#a40000" />
-                        <Label fx:id="divisa_error_from" layoutX="241.0" layoutY="122.0" prefHeight="17.0" prefWidth="136.0" textFill="#a40000" />
-                        <Label fx:id="divisa_error_to" layoutX="421.0" layoutY="122.0" prefHeight="17.0" prefWidth="135.0" textFill="#a40000" />
-                     </children>
-                  </Pane>
-               </content>
-            </Tab>
-          <Tab text="Temperatura" />
-            <Tab text="Longitud" />
-            <Tab text="Masa" />
-            <Tab text="Bytes" />
-        </tabs>
-      </TabPane>
+      <Pane prefHeight="353.0" prefWidth="616.0">
+         <children>
+            <Label layoutX="43.0" layoutY="78.0" prefHeight="17.0" prefWidth="100.0" text="Importe" textFill="#2e3c57" />
+            <Label layoutX="243.0" layoutY="78.0" text="de" textFill="#2e3c57" />
+            <Label layoutX="423.0" layoutY="78.0" prefHeight="17.0" prefWidth="33.0" text="a" textFill="#2e3c57" />
+            <TextField fx:id="amount_input" layoutX="39.0" layoutY="104.0" prefHeight="25.0" prefWidth="188.0" />
+            <MenuButton fx:id="from_menu" layoutX="239.0" layoutY="104.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" text="Selecciona unidad">
+              <items>
+                <MenuItem id="0" mnemonicParsing="false" onAction="#fromUnitMenuHandler" text="ARS - Peso argentino" />
+                <MenuItem id="1" mnemonicParsing="false" onAction="#fromUnitMenuHandler" text="USD - Dólar" />
+                  <MenuItem id="2" mnemonicParsing="false" onAction="#fromUnitMenuHandler" text="EUR - Euro" />
+                  <MenuItem id="3" mnemonicParsing="false" onAction="#fromUnitMenuHandler" text="GBP - Libras Esterlinas" />
+                  <MenuItem id="4" mnemonicParsing="false" onAction="#fromUnitMenuHandler" text="JPY - Yen Japonés" />
+                  <MenuItem id="5" mnemonicParsing="false" onAction="#fromUnitMenuHandler" text="KRW - Won surcoreano" />
+                  <MenuItem id="6" mnemonicParsing="false" onAction="#fromUnitMenuHandler" visible="false" />
+                  <MenuItem id="7" mnemonicParsing="false" onAction="#fromUnitMenuHandler" visible="false" />
+                  <MenuItem id="8" mnemonicParsing="false" onAction="#fromUnitMenuHandler" visible="false" />
+                  <MenuItem id="9" mnemonicParsing="false" onAction="#fromUnitMenuHandler" visible="false" />
+              </items>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MenuButton>
+            <MenuButton fx:id="to_menu" layoutX="419.0" layoutY="104.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" text="Selecciona unidad">
+              <items>
+                  <MenuItem id="1" mnemonicParsing="false" onAction="#toUnitMenuHandler" text="ARS - Peso argentino" />
+                  <MenuItem id="0" mnemonicParsing="false" onAction="#toUnitMenuHandler" text="USD - Dólar" />
+                  <MenuItem id="2" mnemonicParsing="false" onAction="#toUnitMenuHandler" text="EUR - Euro" />
+                  <MenuItem id="3" mnemonicParsing="false" onAction="#toUnitMenuHandler" text="GBP - Libras Esterlinas" />
+                  <MenuItem id="4" mnemonicParsing="false" onAction="#toUnitMenuHandler" text="JPY - Yen Japonés" />
+                  <MenuItem id="5" mnemonicParsing="false" onAction="#toUnitMenuHandler" text="KRW - Won surcoreano" />
+                  <MenuItem id="6" mnemonicParsing="false" onAction="#toUnitMenuHandler" visible="false" />
+                  <MenuItem id="7" mnemonicParsing="false" onAction="#toUnitMenuHandler" visible="false" />
+                  <MenuItem id="8" mnemonicParsing="false" onAction="#toUnitMenuHandler" visible="false" />
+                  <MenuItem id="9" mnemonicParsing="false" onAction="#toUnitMenuHandler" visible="false" />
+              </items>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MenuButton>
+            <Button layoutX="383.0" layoutY="104.0" mnemonicParsing="false" onAction="#swapCurrencies" text="🔁">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label fx:id="summary_label" layoutX="39.0" layoutY="169.0" prefHeight="17.0" prefWidth="188.0" textFill="#2e3c57" />
+            <Label fx:id="result_label" layoutX="39.0" layoutY="189.0" prefHeight="40.0" prefWidth="515.0" textFill="#2e3c57">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+            </Label>
+            <Label fx:id="unit_1" layoutX="39.0" layoutY="239.0" prefHeight="17.0" prefWidth="200.0" textFill="#2e3c57" />
+            <Label fx:id="unit_2" layoutX="39.0" layoutY="264.0" prefHeight="17.0" prefWidth="200.0" textFill="#2e3c57" />
+            <Button fx:id="divisa_convert_btn" layoutX="405.0" layoutY="289.0" mnemonicParsing="false" onAction="#conversion" prefHeight="40.0" prefWidth="150.0" text="convertir" textAlignment="CENTER" textFill="#2e3c57">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label fx:id="error_amount_label" layoutX="39.0" layoutY="139.0" prefHeight="17.0" prefWidth="191.0" textFill="#a40000" />
+            <Label fx:id="error_from_label" layoutX="240.0" layoutY="139.0" prefHeight="17.0" prefWidth="136.0" textFill="#a40000" />
+            <Label fx:id="error_to_label" layoutX="420.0" layoutY="139.0" prefHeight="17.0" prefWidth="135.0" textFill="#a40000" />
+            <MenuButton fx:id="method_menu" layoutX="39.0" layoutY="29.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" text="Divisas">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#selectMethod" text="Divisas" />
+                  <MenuItem mnemonicParsing="false" onAction="#selectMethod" text="Temperaturas" />
+                  <MenuItem mnemonicParsing="false" onAction="#selectMethod" text="Longitudes" />
+               </items>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MenuButton>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

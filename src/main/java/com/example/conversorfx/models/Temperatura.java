@@ -47,6 +47,6 @@ public class Temperatura extends TipoUnidad {
 
     @Override
     public String format(double value) {
-        return String.format("%.2f", value) + "º";
+        return String.format("%.1f", value) + "º";
     }
 }

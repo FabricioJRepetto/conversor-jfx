@@ -1,9 +1,14 @@
 package com.example.conversorfx.models;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public abstract class TipoUnidad {
     Map<String, Double> unidades;
+
+    public TipoUnidad() {
+        unidades = new HashMap<>();
+    }
 
     /**
      * Convierte un valor de tipo X a tipo Y.
