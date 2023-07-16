@@ -89,16 +89,16 @@ public class MainController {
     };
     // TODO REFACTOR
     private final String[] long_opt = {
-            "Kilometro",
-            "Metro",
-            "Centímetro",
-            "Milimetro",
-            "Micrómetro",
-            "Nanómetro",
-            "Milla",
-            "Yarda",
+            "Kilómetros",
+            "Metros",
+            "Centímetros",
+            "Milímetros",
+            "Micrómetros",
+            "Nanómetros",
+            "Millas",
+            "Yardas",
             "Pies",
-            "Pulgada"
+            "Pulgadas"
     };
     // TODO REFACTOR
     private void change_options(MenuItem m) {
