@@ -1,70 +1,50 @@
 package com.example.conversorfx;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import com.example.conversorfx.models.Divisa;
 import javafx.event.ActionEvent;
-import javafx.event.EventTarget;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.InputMethodEvent;
-import javafx.scene.input.KeyEvent;
-import javafx.util.converter.BooleanStringConverter;
-import javafx.util.converter.IntegerStringConverter;
 
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class MainController {
     @FXML
     private TextField divisa_input;
     @FXML
-    private Label divisa_result_label;
+    private MenuButton divisa_from;
+    @FXML
+    private MenuButton divisa_to;
     @FXML
     private Label divisa_summary_label;
+    @FXML
+    private Label divisa_result_label;
     @FXML
     private Label divisa_1;
     @FXML
     private Label divisa_2;
-    @FXML
-    private MenuButton divisa_from;
-    @FXML
-    private MenuButton divisa_to;
 
     @FXML
     private Label divisa_error_amount;
-
     @FXML
     private Label divisa_error_from;
-
     @FXML
     private Label divisa_error_to;
-
 
     private String from = null;
     private String to = null;
     private Double amount = null;
-
-
-    @FXML
-    protected void checkInput(InputMethodEvent event) {
-        String aux = event.getCommitted();
-        System.out.println(event.getComposed());
-        System.out.println(aux);
-
-        if (aux.matches("\\D")) {
-            event.consume();
-            divisa_input.setStyle("-fx-border-color: red");
-        } else {
-            divisa_input.setStyle("-fx-border-color: green");
-        }
-    }
+    private Map<String, Object> metodo = new HashMap<>();
 
     @FXML
     protected void divisaFromMenu(ActionEvent event) {
         MenuItem menuOption = (MenuItem) event.getSource();
         String text = menuOption.getText();
-        String code = text.substring(0, 3); // MenuItem text
-        divisa_from.setText(text);
-        from = code;
+        String code = text.split(" - ")[0];
+
+        divisa_from.setText(text); // MenuItem text
+        from = code; // Conversion code
     }
     @FXML
     protected void divisaToMenu(ActionEvent event) {
@@ -77,22 +57,29 @@ public class MainController {
     @FXML
     protected void convertButtonClick() {
         try {
-            this.clearError();
-
-            String inputString = divisa_input.getText();
+            this.clearLabels();
+            String inputString = divisa_input.getText().replaceAll("[^\\d.]", "");
 
             if (inputString.length() > 0) {
-                amount = (double) Integer.parseInt(inputString.replaceAll("\\D", ""));
+                amount = Double.parseDouble(inputString);
                 divisa_input.setText(amount.toString());
             }
 
             if (checkNoErrors()) {
-                System.out.println(amount);
+                Divisa d = new Divisa();
+                double res = d.convert(amount, from, to);
 
-                divisa_summary_label.setText("$" + divisa_input.getText() + " " + from + " =");
-                divisa_result_label.setText("$X.XXX.xx" + " " + to);
-                divisa_1.setText("1 " + from + " = X " + to);
-                divisa_2.setText("1 " + to + " = X " + from);
+                divisa_summary_label.setText(d.format(amount) + " " + from + " =");
+                divisa_result_label.setText(d.format(res) + " " + to);
+
+                if (amount != 1.0) {
+                    String aux = d.format(d.convert(1, from, to));
+                    divisa_1.setText("1 " + from + " = " + aux + " " + to);
+                }
+                if (!Objects.equals(from, to)) {
+                    String aux = d.format(d.convert(1, to, from));
+                    (amount == 1.0 ? divisa_1 : divisa_2).setText("1 " + to + " = " + aux + " " + from);
+                }
             }
 
         } catch(Exception ex) {
@@ -111,11 +98,17 @@ public class MainController {
             from = to;
             to = code_aux;
 
-            System.out.println("from " + from + ", to " + to);
+            if (!Objects.equals(from, to)) convertButtonClick();
         }
     }
 
-    private void clearError() {
+    private void clearLabels() {
+        // res
+        divisa_summary_label.setText("");
+        divisa_result_label.setText("");
+        divisa_1.setText("");
+        divisa_2.setText("");
+        // errors
         divisa_error_amount.setText("");
         divisa_error_from.setText("");
         divisa_error_to.setText("");
