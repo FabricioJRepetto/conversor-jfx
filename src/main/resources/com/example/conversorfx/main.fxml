@@ -1,24 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="353.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.conversorfx.MainController">
+<AnchorPane prefHeight="353.0" prefWidth="748.0" style="-fx-border-radius: 5;" styleClass="main_frame" stylesheets="@../../../../java/com/example/conversorfx/styles/stylesheet.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.conversorfx.MainController">
    <children>
-      <Pane prefHeight="353.0" prefWidth="616.0">
+      <Pane prefHeight="353.0" prefWidth="166.0" styleClass="main_menu" stylesheets="file:/C:/Users/Mars-/Desktop/tronc/Code/ONE/ConversorFX/src/main/java/com/example/conversorfx/styles/stylesheet.css">
          <children>
-            <Label layoutX="43.0" layoutY="78.0" prefHeight="17.0" prefWidth="100.0" text="Importe" textFill="#2e3c57" />
-            <Label layoutX="243.0" layoutY="78.0" text="de" textFill="#2e3c57" />
-            <Label layoutX="423.0" layoutY="78.0" prefHeight="17.0" prefWidth="33.0" text="a" textFill="#2e3c57" />
-            <TextField fx:id="amount_input" layoutX="39.0" layoutY="104.0" prefHeight="25.0" prefWidth="188.0" />
-            <MenuButton fx:id="from_menu" layoutX="239.0" layoutY="104.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" text="Selecciona unidad">
+            <Label fx:id="method_menu1" layoutX="15.0" layoutY="10.0" prefHeight="17.0" prefWidth="136.0" text="Conversor alura" />
+            <ImageView blendMode="DIFFERENCE" fitHeight="44.0" fitWidth="87.0" opacity="0.5" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0" x="105.0" y="270.0">
+               <image>
+                  <Image url="@Logo.png" />
+               </image>
+            </ImageView>
+            <Pane id="menu_options" fx:id="menu_options" layoutY="85.0" prefHeight="268.0" prefWidth="166.0">
+               <children>
+                  <Button id="Divisas" layoutX="20.0" layoutY="14.0" mnemonicParsing="false" onAction="#selectMethod" text="Divisas" textFill="#c4c4c4">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="clean_button" />
+                        <String fx:value="Divisas" />
+                     </styleClass>
+                  </Button>
+                  <Button id="Temperatura" layoutX="20.0" layoutY="44.0" mnemonicParsing="false" onAction="#selectMethod" styleClass="clean_button" text="Temperatura" textFill="#c4c4c4">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button id="Longitudes" layoutX="20.0" layoutY="74.0" mnemonicParsing="false" onAction="#selectMethod" styleClass="clean_button" text="Longitudes" textFill="#c4c4c4">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane layoutX="166.0" prefHeight="353.0" prefWidth="587.0">
+         <children>
+            <Label layoutX="240.0" layoutY="74.0" text="de" textFill="#2e3c57" />
+            <Label layoutX="40.0" layoutY="74.0" prefHeight="17.0" prefWidth="100.0" text="Valor inicial" textFill="#2e3c57" />
+            <Label layoutX="420.0" layoutY="74.0" prefHeight="17.0" prefWidth="33.0" text="a" textFill="#2e3c57" />
+            <TextField fx:id="amount_input" layoutX="36.0" layoutY="100.0" prefHeight="25.0" prefWidth="188.0" />
+            <MenuButton fx:id="from_menu" layoutX="236.0" layoutY="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" text="Selecciona unidad">
               <items>
                 <MenuItem id="0" mnemonicParsing="false" onAction="#fromUnitMenuHandler" text="ARS - Peso argentino" />
                 <MenuItem id="1" mnemonicParsing="false" onAction="#fromUnitMenuHandler" text="USD - Dólar" />
@@ -35,7 +81,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </MenuButton>
-            <MenuButton fx:id="to_menu" layoutX="419.0" layoutY="104.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" text="Selecciona unidad">
+            <Button layoutX="380.0" layoutY="100.0" mnemonicParsing="false" onAction="#swapCurrencies" text="🔁">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <MenuButton fx:id="to_menu" layoutX="416.0" layoutY="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" text="Selecciona unidad">
               <items>
                   <MenuItem id="1" mnemonicParsing="false" onAction="#toUnitMenuHandler" text="ARS - Peso argentino" />
                   <MenuItem id="0" mnemonicParsing="false" onAction="#toUnitMenuHandler" text="USD - Dólar" />
@@ -52,20 +103,15 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </MenuButton>
-            <Button layoutX="383.0" layoutY="104.0" mnemonicParsing="false" onAction="#swapCurrencies" text="🔁">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Label fx:id="summary_label" layoutX="39.0" layoutY="169.0" prefHeight="17.0" prefWidth="188.0" textFill="#2e3c57" />
-            <Label fx:id="result_label" layoutX="39.0" layoutY="189.0" prefHeight="40.0" prefWidth="515.0" textFill="#2e3c57">
+            <Label fx:id="summary_label" layoutX="36.0" layoutY="165.0" prefHeight="17.0" prefWidth="188.0" textFill="#2e3c57" />
+            <Label fx:id="result_label" layoutX="36.0" layoutY="185.0" prefHeight="40.0" prefWidth="515.0" textFill="#2e3c57">
                <font>
                   <Font name="System Bold" size="32.0" />
                </font>
             </Label>
-            <Label fx:id="unit_1" layoutX="39.0" layoutY="239.0" prefHeight="17.0" prefWidth="200.0" textFill="#2e3c57" />
-            <Label fx:id="unit_2" layoutX="39.0" layoutY="264.0" prefHeight="17.0" prefWidth="200.0" textFill="#2e3c57" />
-            <Button fx:id="divisa_convert_btn" layoutX="405.0" layoutY="289.0" mnemonicParsing="false" onAction="#conversion" prefHeight="40.0" prefWidth="150.0" text="convertir" textAlignment="CENTER" textFill="#2e3c57">
+            <Label fx:id="unit_1" layoutX="36.0" layoutY="235.0" prefHeight="17.0" prefWidth="200.0" textFill="#2e3c57" />
+            <Label fx:id="unit_2" layoutX="36.0" layoutY="260.0" prefHeight="17.0" prefWidth="200.0" textFill="#2e3c57" />
+            <Button fx:id="divisa_convert_btn" layoutX="402.0" layoutY="285.0" mnemonicParsing="false" onAction="#conversion" prefHeight="40.0" prefWidth="150.0" text="convertir" textAlignment="CENTER" textFill="#2e3c57">
                <font>
                   <Font size="20.0" />
                </font>
@@ -73,19 +119,20 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label fx:id="error_amount_label" layoutX="39.0" layoutY="139.0" prefHeight="17.0" prefWidth="191.0" textFill="#a40000" />
-            <Label fx:id="error_from_label" layoutX="240.0" layoutY="139.0" prefHeight="17.0" prefWidth="136.0" textFill="#a40000" />
-            <Label fx:id="error_to_label" layoutX="420.0" layoutY="139.0" prefHeight="17.0" prefWidth="135.0" textFill="#a40000" />
-            <MenuButton fx:id="method_menu" layoutX="39.0" layoutY="29.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" text="Divisas">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#selectMethod" text="Divisas" />
-                  <MenuItem mnemonicParsing="false" onAction="#selectMethod" text="Temperaturas" />
-                  <MenuItem mnemonicParsing="false" onAction="#selectMethod" text="Longitudes" />
-               </items>
+            <Label fx:id="error_amount_label" layoutX="36.0" layoutY="135.0" prefHeight="17.0" prefWidth="191.0" textFill="#a40000" />
+            <Label fx:id="error_from_label" layoutX="237.0" layoutY="135.0" prefHeight="17.0" prefWidth="136.0" textFill="#a40000" />
+            <Label fx:id="error_to_label" layoutX="417.0" layoutY="135.0" prefHeight="17.0" prefWidth="135.0" textFill="#a40000" />
+            <Button layoutX="555.0" layoutY="5.0" mnemonicParsing="false" onAction="#close" style="-fx-background-color: #00000000;" text="❌" textFill="#2e3c57">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
-            </MenuButton>
+               <font>
+                  <Font name="MS Outlook" size="12.0" />
+               </font>
+               <effect>
+                  <ColorAdjust />
+               </effect>
+            </Button>
          </children>
       </Pane>
    </children>

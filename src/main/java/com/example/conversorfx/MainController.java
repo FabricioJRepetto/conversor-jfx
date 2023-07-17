@@ -8,12 +8,15 @@ import com.example.conversorfx.utils.AcceptsNegative;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 import java.util.*;
 
 public class MainController {
     @FXML
-    private MenuButton method_menu;
+    private Pane menu_options;
     @FXML
     private TextField amount_input;
     @FXML
@@ -43,13 +46,20 @@ public class MainController {
     private TipoUnidad m = new Divisa();
 
     @FXML
-    protected void selectMethod(ActionEvent event) {
-        MenuItem menuOption = (MenuItem) event.getSource();
-        String text = menuOption.getText();
+    protected void close(ActionEvent e) {
+        Stage stage = (Stage) ((Button)e.getSource()).getScene().getWindow();
+        stage.close();
+    }
 
-        method_menu.setText(text); // MenuItem text
+    @FXML
+    protected void selectMethod(ActionEvent event) {
+        Button source = (Button) event.getSource();
+        String text = source.getText();
+
+//        method_menu.setText(text); // Change method label text
 
         if (!Objects.equals(text, selected_method)) { // Clear all inputs
+            updateColors(text); // Change menu opt. colors
             clearLabels();
             clearInputs();
 
@@ -126,6 +136,17 @@ public class MainController {
         }
     }
 
+    public void updateColors(String target) {
+        menu_options.getChildren().forEach(node -> {
+            String id = node.getId();
+            if (Objects.equals(id, target)) {
+                node.setStyle("-fx-text-fill: white;");
+            } else {
+                node.setStyle("-fx-text-fill: #8a8a8a;");
+            }
+        });
+    }
+
     @FXML
     protected void fromUnitMenuHandler(ActionEvent event) {
         MenuItem menuOption = (MenuItem) event.getSource();
@@ -159,7 +180,7 @@ public class MainController {
             if (checkNoErrors()) {
                 double res = m.convert(amount, from, to);
 
-                summary_label.setText(m.format(amount) + " " + from + " =");
+                summary_label.setText(amount + " " + from + " =");
                 result_label.setText(m.format(res) + " " + to);
 
                 if (amount != 1.0) {

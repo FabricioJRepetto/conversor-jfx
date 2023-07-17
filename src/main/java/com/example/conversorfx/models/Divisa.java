@@ -24,17 +24,12 @@ public class Divisa extends TipoUnidad {
 
     @Override
     public double convert(double value, String from, String to) {
-        // ? value * from = to
-        //    A * B = C
-        double base;
+        // convertir a usd
+        double base = value * unidades.get(from);
 
-        if (Objects.equals(to, "USD")) {
-            base = value * unidades.get(from);
-        } else {
-            // convertir a base
-            double usd = value * unidades.get(from);
+        if (!Objects.equals(to, "USD")) {
             // convertir de base a moneda final
-            base = usd / unidades.get(to);
+            return base / unidades.get(to);
         }
         return base;
     }

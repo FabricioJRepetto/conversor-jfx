@@ -1,0 +1,26 @@
+.main_frame {
+    -fx-background-color: #ebebeb;
+}
+.main_frame Label {
+    -fx-text-fill: #0d152b;
+}
+.main_frame TextField {
+    -fx-background-color: -fx-text-box-border, -fx-background ;
+    -fx-background-insets: 0, 1 1 1 1;
+    -fx-background-radius: 5;
+}
+
+.main_menu {
+    -fx-background-color: #0d152b;
+}
+.main_menu * {
+    -fx-text-fill: white;
+}
+
+.clean_button {
+    -fx-background-color: #00000000;
+    -fx-text-fill: #8a8a8a;
+}
+.Divisas {
+    -fx-text-fill: white;
+}
